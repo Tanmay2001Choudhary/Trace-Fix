@@ -1,0 +1,87 @@
+<!-- <input type="checkbox" name="" id="sidebar-toggle" /> -->
+<div class="sidebar">
+  <div class="sidebar-brand">
+    <div class="brand-flex">
+      <div class="heading logo">
+        <h1>TrackFix</h1>
+        <div class="slogan">
+          <div class="line1"></div>
+          <h4>Fast Fix</h4>
+          <div class="line2"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="sidebar-main">
+    <div class="sidebar-user">
+      <div class="user-profile">
+        <ng-container *ngIf="user && user.profileImage">
+          <img
+            [src]="'data:image/png;base64,' + user.profileImage"
+            alt="User Image"
+          />
+        </ng-container>
+        <i class="ri-user-3-line" *ngIf="!user || !user.profileImage"></i>
+      </div>
+      <!-- <button>
+        <span><i class="ri-edit-fill image"></i></span>Edit
+      </button> -->
+      <div *ngIf="user">
+        <h3>{{ user.name }}</h3>
+        <span>{{ user.email }}</span>
+      </div>
+    </div>
+    <div class="sidebar-menu">
+      <div class="menu-block">
+        <div class="menu-head"><span> Dashboard </span></div>
+        <ul>
+          <li routerLink="profile" routerLinkActive="active-link">
+            <a>
+              <span><i class="ri-user-line"></i></span>
+              Profile
+            </a>
+          </li>
+          <li
+            routerLink="all-users"
+            routerLinkActive="active-link"
+            *ngIf="user && user.role == 'ADMIN'"
+          >
+            <a routerLink="all-users">
+              <span><i class="ri-group-line"></i></span>
+              All Users
+            </a>
+          </li>
+          <li routerLink="tickets" routerLinkActive="active-link">
+            <a routerLink="tickets">
+              <span><i class="ri-ticket-2-line"></i></span>
+              All Tickets
+            </a>
+          </li>
+          <li
+            *ngIf="user && (user.role == 'DEVELOPER' || user.role == 'USER')"
+            routerLink="my-tickets"
+            routerLinkActive="active-link"
+          >
+            <a>
+              <span><i class="ri-ticket-2-line"></i></span>
+              My Tickets
+            </a>
+          </li>
+          <li (click)="openModal()">
+            <a>
+              <span><i class="ri-logout-circle-r-line"></i></span>
+              Logout
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-logout
+  *ngIf="showModal"
+  [title]="'Are you sure you want to logout?'"
+  (cancel)="closeModal()"
+  (confirm)="logout()"
+></app-logout>

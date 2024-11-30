@@ -1,0 +1,314 @@
+.tickets-container {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.page-header {
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.header-actions button {
+  outline: none;
+  color: #fff;
+  background: #0088a9;
+  border: none;
+  padding: 0.6rem 1rem;
+  margin-left: 1rem;
+  border-radius: 3px;
+  font-weight: 600;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.header-actions button:hover {
+  box-shadow: 0 0px 10px 10px #0088a97a;
+}
+.header-actions button span {
+  font-size: 1.2rem;
+  margin-right: 0.6rem;
+}
+
+/* .cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 3rem;
+  margin-top: 2rem;
+}
+
+.card-single {
+  background: #fff;
+  padding: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  animation: fadeInUp 1s ease-in-out;
+  cursor: pointer;
+}
+
+.card-single:hover {
+  transform: scale(1.05) rotateX(10deg);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.card-single:hover::before {
+  transform: scale(1.1);
+}
+
+.card-flex {
+  display: grid;
+  grid-template-columns: 70% auto;
+  align-items: center;
+}
+
+.card-head span {
+  display: block;
+  text-transform: uppercase;
+  color: #555;
+  font-size: 0.9rem;
+}
+
+.card-head small {
+  font-weight: 600;
+  color: #555;
+}
+
+.card-info h2 {
+  font-size: 2.2rem;
+  color: #333;
+}
+
+.card-chart span {
+  font-size: 5rem;
+}
+
+.card-chart.success span {
+  color: seagreen;
+}
+
+.card-chart.danger span {
+  color: tomato;
+}
+
+.card-chart.yellow span {
+  color: orangered;
+} */
+
+.job-grid {
+  width: 90%;
+  margin-top: 4rem;
+  margin-bottom: 1em;
+  display: grid;
+  /* grid-template-columns: auto 66%; */
+  grid-template-columns: 100%;
+  grid-gap: 3rem;
+}
+
+.analytics-card {
+  height: fit-content;
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.analytics-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.analytics-head span {
+  font-size: 1.5rem;
+}
+
+.analytics-chart small {
+  font-weight: 600;
+  color: #555;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.chart-circle {
+  height: 150px;
+  width: 150px;
+  border-left: 2px solid transparent;
+  border-right: 10px solid #0088a9;
+  border-bottom: 10px solid #0088a9;
+  border-top: 10px solid #0088a9;
+  display: grid;
+  place-items: center;
+  margin: auto;
+  border-radius: 50%;
+  margin-bottom: 3rem;
+}
+
+.analytics-btn {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.analytics-card button {
+  display: block;
+  padding: 0.6rem 1rem;
+  width: 80%;
+  height: 45px;
+  background: #0088a9;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  transition: all 0.3s ease-in-out 0s;
+}
+.analytics-card button:hover {
+  border: 1px solid #efefef;
+  box-shadow: 0 0px 10px 15px #1e8fff7a;
+}
+
+.jobs h2 small {
+  color: #0088a9;
+  font-weight: 600;
+  display: inline-block;
+  margin-left: 1rem;
+  font-size: 0.9rem;
+}
+
+.jobs table {
+  border-collapse: collapse;
+  margin-top: 1rem;
+  overflow-x: auto;
+}
+
+span.indicator {
+  background: #c9f7f5;
+  padding: 0.2rem 1rem;
+  border-radius: 25px;
+}
+
+.indicator.open {
+  background: #4caf50;
+  color: #fff;
+}
+
+.indicator.in-progress {
+  background: #ff9800;
+  color: #fff;
+}
+
+.indicator.closed {
+  background: #f44336;
+  color: #fff;
+}
+
+.indicator.on-hold {
+  background: #2196f3;
+  color: #fff;
+}
+
+.indicator.resolved {
+  background: #8bc34a;
+  color: #fff;
+}
+
+.indicator.cancelled {
+  background: #9e9e9e;
+  color: #fff;
+}
+
+.jobs table th div {
+  background: #0088a9;
+  color: #fff;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.first {
+  border-top-left-radius: 25px;
+}
+
+.last {
+  border-top-right-radius: 25px;
+}
+
+.jobs table tbody tr {
+  background: #f9f9f9;
+  cursor: pointer;
+}
+
+.jobs table tbody tr:hover {
+  background: #0001;
+}
+
+.jobs table tbody tr:nth-child(even) {
+  background: #0a809e3f;
+}
+
+.jobs table tbody tr:nth-child(even):hover {
+  background: #0a809e81;
+}
+
+.jobs table td div {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+  color: #444;
+  font-weight: 500;
+}
+
+table button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+table button img {
+  width: 30px;
+}
+
+.table-responsive {
+  overflow: auto;
+}
+
+@media only screen and (max-width: 1124px) {
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .cards {
+    grid-template-columns: 100%;
+  }
+
+  .job-grid {
+    grid-template-columns: 100%;
+  }
+}
+
+@media only screen and (max-width: 675px) {
+  .page-header {
+    display: block;
+  }
+  .header-actions {
+    margin-top: 1rem;
+    text-align: right;
+  }
+  .header-actions button:first-child {
+    margin-left: 0rem;
+  }
+}

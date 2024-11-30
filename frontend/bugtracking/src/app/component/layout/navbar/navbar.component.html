@@ -1,0 +1,27 @@
+<nav>
+  <div class="heading">
+    <h1>TrackFix</h1>
+    <div class="slogan">
+      <div class="line1"></div>
+      <h4>Fast Fix</h4>
+      <div class="line2"></div>
+    </div>
+  </div>
+  <ul class="nav-list">
+    <li><a routerLink="/">Home</a></li>
+    <li><a routerLink="/dashboard/profile">Dashboard</a></li>
+    <li *ngIf="!isLoggedIn">
+      <button routerLink="/signin" class="signin">Sign In</button>
+    </li>
+    <li *ngIf="isLoggedIn">
+      <button (click)="openModal()" class="logout">Logout</button>
+    </li>
+  </ul>
+</nav>
+
+<app-logout
+  *ngIf="showModal"
+  [title]="'Are you sure you want to logout?'"
+  (cancel)="closeModal()"
+  (confirm)="logout()"
+></app-logout>

@@ -1,0 +1,120 @@
+<div class="profile-container">
+  <div class="profile">
+    <div *ngIf="user == null">
+      <app-loader></app-loader>
+    </div>
+    <div *ngIf="user" class="profile-box" [class.edit-mode]="isEditMode">
+      <header>
+        <div class="top-heading">
+          <h4>Personal Details</h4>
+          <div class="icon" (click)="toggleEditMode()">
+            <fa-icon [icon]="isEditMode ? faXmark : faPenToSquare"></fa-icon>
+          </div>
+        </div>
+        <div class="bottom-heading">
+          <p>Update your photo and personal details here</p>
+        </div>
+      </header>
+      <form (ngSubmit)="updateProfile()">
+        <div class="image-content">
+          <div *ngIf="previewImage || user.profileImage" class="image">
+            <img
+              *ngIf="previewImage; else userImage"
+              [src]="previewImage"
+              alt="Uploaded Image Preview"
+            />
+            <ng-template #userImage>
+              <img
+                [src]="'data:image/png;base64,' + user.profileImage"
+                alt="User Image"
+              />
+            </ng-template>
+          </div>
+          <div class="image" *ngIf="!previewImage && !user.profileImage">
+            <i class="ri-user-3-line"></i>
+          </div>
+          <div class="image-actions" [class.show]="isEditMode">
+            <div class="buttons">
+              <label class="button">
+                Upload Image
+                <input
+                  type="file"
+                  accept="image/jpeg, image/png"
+                  (change)="handleImageUpload($event)"
+                />
+              </label>
+              <button
+                type="button"
+                class="button"
+                (click)="deleteImage()"
+                *ngIf="previewImage || user.profileImage"
+              >
+                Delete Image
+              </button>
+            </div>
+            <p>
+              At least 800<span>&times;</span>800 px recommended. JPG and PNG is
+              allowed
+            </p>
+          </div>
+        </div>
+        <div class="profile-content">
+          <div class="name">
+            <div class="first-name">
+              <label for="first-name">First Name</label>
+              <input
+                type="text"
+                [(ngModel)]="firstName"
+                name="firstName"
+                id="first-name"
+                disabled="{{ !isEditMode }}"
+                required
+              />
+            </div>
+            <div class="last-name">
+              <label for="last-name">Last Name</label>
+              <input
+                type="text"
+                [(ngModel)]="lastName"
+                name="lastName"
+                id="last-name"
+                disabled="{{ !isEditMode }}"
+                required
+              />
+            </div>
+          </div>
+          <div class="email">
+            <label for="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              [(ngModel)]="user.email"
+              name="email"
+              disabled="{{ !isEditMode }}"
+              required
+            />
+          </div>
+          <div class="update">
+            <div class="role">
+              <label for="role">Role</label>
+              <select
+                name="role"
+                id="role"
+                [(ngModel)]="user.role"
+                required
+                disabled
+              >
+                <option value="ADMIN">Admin</option>
+                <option value="DEVELOPER">Developer</option>
+                <option value="USER">User</option>
+              </select>
+            </div>
+            <div class="update-btn" [class.show]="isEditMode">
+              <button type="submit">Update Profile</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

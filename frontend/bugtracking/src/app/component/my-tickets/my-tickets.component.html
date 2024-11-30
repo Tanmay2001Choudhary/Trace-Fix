@@ -1,0 +1,147 @@
+<div class="my-tickets">
+  <div *ngFor="let ticket of createdTickets" class="ticket-card">
+    <div class="ticket-card-header">
+      <div class="ticket-card-header-left">
+        <div class="priority">{{ ticket.priority }} Priority</div>
+        <div class="title">
+          <div class="title-data">{{ ticket.title }}</div>
+          <div class="status">{{ ticket.status }}</div>
+        </div>
+        <div class="module">{{ getModuleName(ticket.module) }}</div>
+      </div>
+      <div class="ticket-card-header-right">
+        <img
+          src="menu.svg"
+          alt=""
+          (click)="toggleDropdown(ticket.id); $event.stopPropagation()"
+        />
+      </div>
+      <div class="dropdown-menu" *ngIf="dropdownVisibility[ticket.id]">
+        <ul>
+          <li (click)="viewTicket(ticket)">
+            <a href=""><img src="open.svg" alt="" />Open Ticket</a>
+          </li>
+          <li
+            [routerLink]="['/dashboard/tickets/edit-ticket']"
+            [queryParams]="{ ticketId: ticket.id, from: 'my-tickets' }"
+          >
+            <a><img src="edit2.svg" alt="" />Edit</a>
+          </li>
+          <li (click)="delete(ticket.id)">
+            <a><img src="bin.svg" alt="" />Delete</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="ticket-card-body">
+      <img
+        [src]="'data:image/png;base64,' + ticket.bugImage"
+        alt="bug Image"
+        *ngIf="ticket.bugImage"
+      />
+      <div class="description">
+        {{ ticket.description }}
+      </div>
+    </div>
+    <div class="ticket-card-footer">
+      <div class="createdAt">{{ ticket.updatedAt | date : "d-MMM-yyyy" }}</div>
+      <div class="user">
+        <img
+          [src]="
+            'data:image/png;base64,' + getUserProfileImage(ticket.assignedTo)
+          "
+          alt="bug Image"
+          *ngIf="getUserProfileImage(ticket.assignedTo)"
+        />
+        <div
+          *ngIf="!getUserProfileImage(ticket.assignedTo)"
+          class="defaultImage"
+        >
+          <i class="ri-user-3-line"></i>
+        </div>
+        <div class="assigned">{{ getUserName(ticket.assignedTo) }}</div>
+      </div>
+    </div>
+  </div>
+  <div *ngFor="let ticket of assignedTickets" class="ticket-card">
+    <div class="ticket-card-header">
+      <div class="ticket-card-header-left">
+        <div class="priority">{{ ticket.priority }} Priority</div>
+        <div class="title">
+          <div class="title-data">{{ ticket.title }}</div>
+          <div class="status">{{ ticket.status }}</div>
+        </div>
+        <div class="module">{{ getModuleName(ticket.module) }}</div>
+      </div>
+      <div class="ticket-card-header-right">
+        <img
+          src="menu.svg"
+          alt=""
+          (click)="toggleDropdown(ticket.id); $event.stopPropagation()"
+        />
+      </div>
+      <div class="dropdown-menu" *ngIf="dropdownVisibility[ticket.id]">
+        <ul>
+          <li (click)="viewTicket(ticket)">
+            <a><img src="open.svg" alt="" />Open Ticket</a>
+          </li>
+          <li
+            [routerLink]="['/dashboard/tickets/edit-ticket']"
+            [queryParams]="{
+                from:'my-tickets',
+                ticketId: ticket.id,
+              }"
+          >
+            <a> <img src="edit2.svg" alt="" />Edit </a>
+          </li>
+          <li (click)="delete(ticket.id)">
+            <a><img src="bin.svg" alt="" />Delete</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="ticket-card-body">
+      <img
+        [src]="'data:image/png;base64,' + ticket.bugImage"
+        alt="bug Image"
+        *ngIf="ticket.bugImage"
+      />
+      <div class="description">
+        {{ ticket.description }}
+      </div>
+    </div>
+    <div class="ticket-card-footer">
+      <div class="createdAt">{{ ticket.updatedAt | date : "d-MMM-yyyy" }}</div>
+      <div class="user">
+        <img
+          [src]="
+            'data:image/png;base64,' + getUserProfileImage(ticket.createdBy)
+          "
+          alt="bug Image"
+          *ngIf="getUserProfileImage(ticket.createdBy)"
+        />
+        <div
+          *ngIf="!getUserProfileImage(ticket.createdBy)"
+          class="defaultImage"
+        >
+          <i class="ri-user-3-line"></i>
+        </div>
+        <div class="assigned">{{ getUserName(ticket.createdBy) }}</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-ticket-modal
+  *ngIf="selectedTicket"
+  [ticket]="selectedTicket"
+  (closeModal)="closeTicket()"
+>
+</app-ticket-modal>
+
+<app-logout
+  *ngIf="showModal"
+  [title]="'Are you sure you want to delete ticket?'"
+  (cancel)="closeModal()"
+  (confirm)="deleteTicket(selectedTicketId)"
+></app-logout>

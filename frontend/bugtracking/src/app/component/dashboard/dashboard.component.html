@@ -1,0 +1,201 @@
+<input type="checkbox" id="sidebar-toggle" />
+<app-sidebar class="sidebar"></app-sidebar>
+<div class="main-content">
+  <header>
+    <div class="menu-toggle">
+      <label for="sidebar-toggle">
+        <span><i class="ri-menu-line"></i></span>
+      </label>
+    </div>
+    <ul class="nav-list">
+      <li><a routerLink="/">Home</a></li>
+      <li><a routerLink="/dashboard">Dashboard</a></li>
+      <li *ngIf="!isLoggedIn"><button routerLink="/signin">Sign In</button></li>
+      <li *ngIf="isLoggedIn">
+        <button (click)="openModal()" class="logout">Logout</button>
+      </li>
+    </ul>
+  </header>
+  <main>
+    <router-outlet></router-outlet>
+  </main>
+</div>
+<app-logout
+  *ngIf="showModal"
+  [title]="'Are you sure you want to logout?'"
+  (cancel)="closeModal()"
+  (confirm)="logout()"
+></app-logout>
+
+<label for="sidebar-toggle" class="body-label"></label>
+<!-- <div class="page-header">
+      <div>
+        <h1>Analytics Dashboard</h1>
+        <small>Monitor key metrics. Check reporting and review insights</small>
+      </div>
+      <div class="header-actions">
+        <button>
+          <span><i class="ri-upload-2-line"></i></span>
+          Export
+        </button>
+        <button>
+          <span><i class="ri-tools-line"></i></span>
+          Settings
+        </button>
+      </div>
+    </div>
+    <div class="cards">
+      <div class="card-single">
+        <div class="card-flex">
+          <div class="card-info">
+            <div class="card-head">
+              <span>Purchases</span>
+              <small>Number of Purchases</small>
+            </div>
+            <h2>17,663</h2>
+            <small>2% less purchase</small>
+          </div>
+          <div class="card-chart success">
+            <span><i class="ri-line-chart-line"></i></span>
+          </div>
+        </div>
+      </div>
+      <div class="card-single">
+        <div class="card-flex">
+          <div class="card-info">
+            <div class="card-head">
+              <span>Refunds</span>
+              <small>Value of refunded orders</small>
+            </div>
+            <h2>&dollar;4523.11</h2>
+            <small>10% less refunded</small>
+          </div>
+          <div class="card-chart danger">
+            <span><i class="ri-line-chart-line"></i></span>
+          </div>
+        </div>
+      </div>
+      <div class="card-single">
+        <div class="card-flex">
+          <div class="card-info">
+            <div class="card-head">
+              <span>Unique Visitors</span>
+              <small>Number of visitors</small>
+            </div>
+            <h2>46,085</h2>
+            <small>2% less visitors</small>
+          </div>
+          <div class="card-chart yellow">
+            <span><i class="ri-line-chart-line"></i></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="job-grid">
+      <div class="analytics-card">
+        <div class="analytics-head">
+          <h3>Actions needed</h3>
+          <span class="las la-ellipsis-h"><i class="ri-more-line"></i></span>
+        </div>
+        <div class="analytics-chart">
+          <div class="chart-circle">
+            <h1>74%</h1>
+          </div>
+          <div class="analytics-note">
+            <small
+              >Note: Current sprint requires stakeholders meeting to reach
+              conclusion</small
+            >
+          </div>
+        </div>
+        <div class="analytics-btn">
+          <button>Generate Report</button>
+        </div>
+      </div>
+      <div class="jobs">
+        <h2>
+          Jobs
+          <small
+            >See all jobs <span><i class="ri-arrow-right-line"></i></span
+          ></small>
+        </h2>
+        <div class="table-responsive">
+          <table width="100%">
+            <tbody>
+              <tr>
+                <th>
+                  <div>Status</div>
+                </th>
+                <th><div>Problem</div></th>
+                <th><div>Role</div></th>
+                <th><div>Name</div></th>
+                <th><div>Posted</div></th>
+                <th>
+                  <div>Actions</div>
+                </th>
+              </tr>
+              <tr>
+                <td>
+                  <div><span class="indicator"></span></div>
+                </td>
+                <td><div>Customer experience designer</div></td>
+                <td><div>Design</div></td>
+                <td><div>Copenhagen Dk.</div></td>
+                <td><div>Posted 6 days ago</div></td>
+                <td>
+                  <div><button>8 applicants</button></div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div><span class="indicator even"></span></div>
+                </td>
+                <td><div>Customer experience designer</div></td>
+                <td><div>Design</div></td>
+                <td><div>Copenhagen Dk.</div></td>
+                <td><div>Posted 6 days ago</div></td>
+                <td>
+                  <div><button>8 applicants</button></div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div><span class="indicator"></span></div>
+                </td>
+                <td><div>Customer experience designer</div></td>
+                <td><div>Design</div></td>
+                <td><div>Copenhagen Dk.</div></td>
+                <td><div>Posted 6 days ago</div></td>
+                <td>
+                  <div><button>8 applicants</button></div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div><span class="indicator even"></span></div>
+                </td>
+                <td><div>Customer experience designer</div></td>
+                <td><div>Design</div></td>
+                <td><div>Copenhagen Dk.</div></td>
+                <td><div>Posted 6 days ago</div></td>
+                <td>
+                  <div><button>8 applicants</button></div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div><span class="indicator"></span></div>
+                </td>
+                <td><div>Customer experience designer</div></td>
+                <td><div>Design</div></td>
+                <td><div>Copenhagen Dk.</div></td>
+                <td><div>Posted 6 days ago</div></td>
+                <td>
+                  <div><button>8 applicants</button></div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div> -->

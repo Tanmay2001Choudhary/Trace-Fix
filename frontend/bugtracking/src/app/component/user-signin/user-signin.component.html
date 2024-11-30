@@ -1,0 +1,108 @@
+<div class="signin-container" [ngClass]="{ 'sign-up-mode': isSignUpMode }">
+  <div class="forms-container">
+    <div class="signin-signup">
+      <form
+        (ngSubmit)="signIn()"
+        #signInForm="ngForm"
+        method="post"
+        class="sign-in-form"
+      >
+        <h2 class="title">Sign in</h2>
+        <div class="input-field">
+          <i class="ri-mail-fill"></i>
+          <input
+            type="email"
+            placeholder="Email"
+            autocomplete="username"
+            name="email"
+            [(ngModel)]="signInData.email"
+          />
+        </div>
+        <div class="input-field">
+          <i class="ri-key-fill"></i>
+          <input
+            type="password"
+            placeholder="Password"
+            autocomplete="current-password"
+            name="password"
+            [(ngModel)]="signInData.password"
+          />
+        </div>
+        <input type="submit" value="Login" class="btn solid" />
+      </form>
+      <form (ngSubmit)="signUp()" #signUpForm="ngForm" class="sign-up-form">
+        <h2 class="title">Sign up</h2>
+        <div class="input-field">
+          <i class="ri-user-fill"></i>
+          <input
+            type="text"
+            name="name"
+            placeholder="Username"
+            [(ngModel)]="signUpData.name"
+            required
+          />
+        </div>
+        <div class="input-field">
+          <i class="ri-mail-fill"></i>
+          <input
+            type="email"
+            placeholder="Email"
+            name="email"
+            [(ngModel)]="signUpData.email"
+            required
+          />
+        </div>
+        <div class="input-field">
+          <i class="ri-key-fill"></i>
+          <input
+            type="password"
+            placeholder="Password"
+            name="password"
+            [(ngModel)]="signUpData.password"
+            required
+          />
+        </div>
+        <div class="input-field">
+          <i class="ri-shield-user-fill"></i>
+          <div class="select-box-container">
+            <select
+              name="role"
+              id="role"
+              class="select-box"
+              [(ngModel)]="signUpData.role"
+              required
+            >
+              <option value="">Select Role</option>
+              <option value="ADMIN">Admin</option>
+              <option value="DEVELOPER">Developer</option>
+              <option value="USER">User</option>
+            </select>
+          </div>
+        </div>
+        <input type="submit" class="btn" value="Sign up" />
+      </form>
+    </div>
+  </div>
+  <div class="panels-container">
+    <div class="panel left-panel">
+      <div class="content">
+        <h3>Become a Bug Smasher</h3>
+        <p>Join us and take control of your development lifecycle.</p>
+        <button class="button transparent" (click)="switchToSignUp()">
+          Sign up
+        </button>
+      </div>
+      <img src="bug.svg" class="image" alt="bug" />
+    </div>
+    <div class="panel right-panel">
+      <div class="content">
+        <h3>Squash Your Bugs</h3>
+        <p>Sign in to keep your code clean and error-free.</p>
+        <button class="button transparent" (click)="switchToSignIn()">
+          Sign in
+        </button>
+      </div>
+      <img src="loginbug.svg" class="image" alt="loginbug" />
+    </div>
+  </div>
+</div>

@@ -1,0 +1,77 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 21;
+}
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 0 1rem;
+  border-radius: 10px;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+  width: 400px;
+  height: 220px;
+  text-align: center;
+  z-index: 35;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Modal Header */
+.modal h3 {
+  margin-bottom: 20px;
+  font-size: 1.25rem;
+  color: #333;
+}
+
+/* Modal Buttons */
+.modal-actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.modal-actions button {
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.modal-actions button:first-child {
+  background-color: #ccc;
+  color: #333;
+}
+
+.modal-actions button:first-child:hover {
+  background-color: #bbb;
+}
+
+.modal-actions button:last-child {
+  background-color: #ff4d4d;
+  color: white;
+}
+
+.modal-actions button:last-child:hover {
+  background-color: #ff3333;
+}
+
+@media (max-width: 450px) {
+  .modal {
+    width: 300px;
+    height: 200px;
+  }
+}

@@ -1,0 +1,388 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+  opacity: 0;
+  animation: fadeIn 0.3s forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+.modal-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  width: 600px;
+  max-width: 90vw;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(20px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+}
+
+.modal-header h2 {
+  font-size: 1.5rem;
+  margin: 0;
+  color: #333;
+}
+
+.close-button {
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  color: #aaa;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.close-button:hover {
+  color: #333;
+}
+
+.modal-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-body p {
+  margin: 0;
+  font-size: 1rem;
+  color: #555;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+  border-top: 1px solid #ddd;
+  padding-top: 10px;
+  margin-top: 15px;
+}
+
+.action-button {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.action-button img {
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+}
+
+.primary-button,
+.danger-button {
+  background: transparent;
+  border: none;
+}
+.date {
+  font-style: italic;
+  display: flex;
+  align-items: center;
+  font-size: 0.8rem;
+  font-family: cursive;
+}
+
+.open,
+.low {
+  color: #4caf50 !important;
+}
+
+.in-progress,
+.high {
+  color: #c9f7f5 !important;
+}
+
+.closed,
+.critical {
+  color: #f44336 !important;
+}
+
+.on-hold {
+  color: #2196f3 !important;
+}
+.medium {
+  color: rgb(216, 216, 12) !important;
+}
+
+.resolved {
+  color: #8bc34a !important;
+}
+
+.cancelled {
+  color: #9e9e9e !important;
+}
+
+.modal-body-content {
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+}
+
+.modal-body-content .created-by,
+.modal-body-content .assigned-To {
+  display: flex;
+  flex-direction: column;
+  width: 33%;
+  padding: 10px;
+  align-items: center;
+}
+
+.modal-body-content .created-by p,
+.modal-body-content .assigned-To p {
+  text-align: center;
+}
+
+.modal-body-content .created-by .img,
+.modal-body-content .assigned-To .img {
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
+  display: flex;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  filter: drop-shadow(0 0 5px #0087a9);
+}
+
+.modal-body-content .created-by .img img,
+.modal-body-content .assigned-To .img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  box-shadow: 0 0 5px #0087a9;
+}
+
+.modal-body-content .created-by .img i,
+.modal-body-content .assigned-To .img i {
+  font-size: 4rem;
+}
+
+.modal-body-content .status {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-body-content .status img {
+  width: 50px;
+  height: 50px;
+  transform: rotate(90deg);
+}
+
+.space {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.space p {
+  background: #fff;
+  padding: 5px 15px;
+  box-shadow: 0 0 15px 10px rgba(0, 0, 0, 0.1) inset;
+  border-radius: 25px;
+  filter: drop-shadow(0 0 5px #0087a9);
+}
+
+.space img {
+  width: 70px;
+  height: 70px;
+}
+
+.bug-image-container {
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  margin-top: 15px;
+  width: 100%;
+  gap: 1rem;
+}
+
+.bug-image-container .bug-image {
+  width: 200px;
+  height: 200px;
+  display: flex;
+  padding: 0.2rem;
+  border-radius: 5px;
+  border: 3px dashed #0084a9;
+  object-fit: cover;
+  box-shadow: 0 0 4px 8px rgba(0, 0, 0, 0.2) inset;
+}
+
+.bug-image-container .description {
+  max-height: 200px;
+  text-align: justify;
+  padding-right: 10px;
+  overflow-y: scroll;
+}
+
+.description::-webkit-scrollbar-track {
+  background-color: transparent;
+  border-radius: 5px;
+}
+
+.description::-webkit-scrollbar {
+  width: 5px;
+  background-color: transparent;
+  cursor: grab;
+}
+
+.description::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  cursor: grab;
+  background-image: -webkit-gradient(
+    linear,
+    40% 0%,
+    75% 84%,
+    from(#4d9c41),
+    to(#19911d),
+    color-stop(0.6, #54de5d)
+  );
+}
+
+.description::-webkit-scrollbar-thumb:active {
+  cursor: grabbing;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 10;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.8);
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+}
+
+.modal img {
+  max-width: 80%;
+  max-height: 80%;
+  border-radius: 10px;
+}
+
+.modal.active {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-close {
+  position: absolute;
+  top: 20px;
+  right: 40px;
+  color: white;
+  font-size: 60px;
+  cursor: pointer;
+  z-index: 10001;
+}
+
+.remove-container {
+  position: absolute;
+  width: fit-content;
+  height: fit-content;
+  top: 5px;
+  right: 15px;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 4;
+}
+
+.imgArea .close {
+  font-size: 20px;
+  z-index: 4;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 10;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.8);
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+}
+
+.modal img {
+  max-width: 80%;
+  max-height: 80%;
+  border-radius: 10px;
+}
+
+.modal.active {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-close {
+  position: absolute;
+  top: 20px;
+  right: 40px;
+  color: white;
+  font-size: 60px;
+  cursor: pointer;
+  z-index: 10001;
+}
+
+.remove-container {
+  position: absolute;
+  width: fit-content;
+  height: fit-content;
+  top: 5px;
+  right: 15px;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 4;
+}
+
+.imgArea .close {
+  font-size: 20px;
+  z-index: 4;
+}

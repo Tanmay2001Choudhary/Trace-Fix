@@ -1,0 +1,110 @@
+<div class="modal-overlay" (click)="close()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <header class="modal-header">
+      <h2>
+        {{ ticket?.title }}
+      </h2>
+      <button class="close-button" (click)="close()">×</button>
+    </header>
+    <section class="modal-body">
+      <div class="modal-body-content">
+        <div class="created-by">
+          <div class="img" *ngIf="createdBy?.profileImage">
+            <img
+              [src]="'data:image/png;base64,' + createdBy.profileImage"
+              alt="Created User Image"
+              class="profile-image"
+            />
+          </div>
+          <div class="img" *ngIf="!createdBy?.profileImage">
+            <i class="ri-user-3-line"></i>
+          </div>
+          <p *ngIf="createdBy?.name">{{ createdBy.name }}</p>
+          <p *ngIf="!createdBy?.name">Unknown</p>
+        </div>
+        <div class="status">
+          <p [ngClass]="getStatusClass(ticket?.status)">{{ ticket?.status }}</p>
+          <img src="lightning.svg" alt="" />
+          <p [ngClass]="getPriorityClass(ticket?.priority)">
+            {{ ticket?.priority }}
+          </p>
+        </div>
+        <div class="assigned-To">
+          <div class="img" *ngIf="assignedTo?.profileImage">
+            <img
+              [src]="'data:image/png;base64,' + assignedTo.profileImage"
+              alt="Assigned User Image"
+              class="profile-image"
+            />
+          </div>
+          <div class="img" *ngIf="!assignedTo?.profileImage">
+            <i class="ri-user-3-line"></i>
+          </div>
+          <p *ngIf="assignedTo?.name">{{ assignedTo.name }}</p>
+          <p *ngIf="!assignedTo?.name">unknown</p>
+        </div>
+      </div>
+      <div class="space">
+        <p><strong>Created By</strong></p>
+        <img src="right-arrow.svg" alt="" />
+        <p><strong>Assigned To</strong></p>
+      </div>
+      <div *ngIf="ticket?.bugImage" class="bug-image-container">
+        <img
+          [src]="'data:image/png;base64,' + ticket.bugImage"
+          alt="Bug Image"
+          class="bug-image"
+          (click)="onImageClick($event)"
+        />
+        <div class="description">
+          <p>
+            {{ ticket?.description }}
+          </p>
+        </div>
+      </div>
+    </section>
+    <footer class="modal-actions">
+      <div class="action-button">
+        <button
+          [routerLink]="['/dashboard/tickets/edit-ticket']"
+          [queryParams]="{ ticketId: ticket.id }"
+          type="button"
+          class="primary-button edit"
+        >
+          <img src="edit.svg" alt="" />
+        </button>
+        <button
+          type="button"
+          class="danger-button delete"
+          (click)="delete(ticket.id)"
+        >
+          <img src="bin.svg" alt="" />
+        </button>
+      </div>
+      <div class="date">
+        <p>
+          <strong>Last Updated At: </strong
+          >{{ ticket.updatedAt | date : "MMM d, y" }}
+        </p>
+      </div>
+    </footer>
+  </div>
+</div>
+<app-logout
+  *ngIf="showModal"
+  [title]="'Are you sure you want to delete ticket?'"
+  (cancel)="closeDeleteModal()"
+  (confirm)="deleteTicket(selectedTicketId)"
+></app-logout>
+<div class="modal" #modal (click)="closeBugImageModal()">
+  <img
+    [src]="'data:image/png;base64,' + ticket.bugImage"
+    alt="Enlarged image"
+  />
+  <fa-icon
+    [icon]="faXmark"
+    class="close"
+    (click)="closeBugImageModal()"
+    class="modal-close"
+  ></fa-icon>
+</div>

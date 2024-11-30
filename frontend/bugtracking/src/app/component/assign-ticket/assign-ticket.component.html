@@ -1,0 +1,231 @@
+<div class="assign-task">
+  <button
+    [routerLink]="['/dashboard/tickets']"
+    class="go-back-btn"
+    type="button"
+  >
+    <div class="inner-div">
+      <fa-icon [icon]="faArrowLeft"> </fa-icon>
+    </div>
+    <p>Go Back</p>
+  </button>
+  <form (ngSubmit)="submitTicket()">
+    <div class="heading">
+      <h3>Assign Ticket</h3>
+    </div>
+    <div class="input-group">
+      <input
+        type="text"
+        id="title"
+        name="title"
+        [(ngModel)]="ticketData.title"
+        required
+      />
+      <label for="title">Title</label>
+    </div>
+    <div class="input-group">
+      <textarea
+        name="description"
+        id="description"
+        name="description"
+        required
+        [(ngModel)]="ticketData.description"
+        #textArea
+        (keyup)="adjustHeight()"
+      ></textarea>
+      <label for="description">Description</label>
+    </div>
+    <div class="selector" #dropdown>
+      <div id="selectedField" (click)="toggleDropdown()">
+        <p>{{ selectedOption }}</p>
+        <img
+          src="arrow.svg"
+          alt=""
+          id="arrowIcon"
+          [ngClass]="{ rotate: isDropdownVisible }"
+        />
+      </div>
+      <ul id="list" [ngClass]="{ hide: !isDropdownVisible }">
+        <li
+          class="options"
+          *ngFor="let user of users"
+          (click)="selectOption(user.name)"
+        >
+          <div class="img" *ngIf="user.profileImage">
+            <img
+              [src]="'data:image/png;base64,' + user.profileImage"
+              alt="profile"
+            />
+          </div>
+          <div class="img" *ngIf="!user.profileImage">
+            <i class="ri-user-3-line"></i>
+          </div>
+          <p>{{ user.name }}</p>
+        </li>
+      </ul>
+    </div>
+
+    <div class="checkbox">
+      <input
+        type="checkbox"
+        id="lowest-assigned"
+        (change)="onCheckboxChange($event)"
+      />
+      <label for="lowest-assigned"
+        >Assign to Developer with Lowest Assigned Tickets
+      </label>
+    </div>
+    <!-- <div class="selector" #dropdown2>
+      <div id="selectedField" (click)="toggleDropdown2()">
+        <p>{{ selectedOption2 }}</p>
+        <img
+          src="arrow.svg"
+          alt=""
+          id="arrowIcon"
+          [ngClass]="{ rotate: isDropdown2Visible }"
+        />
+      </div>
+      <ul id="list" [ngClass]="{ hide: !isDropdown2Visible }">
+        <li
+          class="options"
+          *ngFor="let module of modules"
+          (click)="selectOption2(module.name)"
+        >
+          <p>{{ module.name }}</p>
+        </li>
+      </ul>
+    </div> -->
+    <div class="selector" #dropdown2>
+      <div id="selectedField" (click)="toggleDropdown2()">
+        <p *ngIf="!isCustomInputVisible">
+          {{ selectedOption2 || "Select an option" }}
+        </p>
+        <div class="select-input-group" *ngIf="isCustomInputVisible">
+          <input
+            [(ngModel)]="customInput"
+            (click)="$event.stopPropagation()"
+            id="module"
+            name="module"
+          />
+          <label for="module">Module name</label>
+        </div>
+        <img
+          src="arrow.svg"
+          alt=""
+          id="arrowIcon"
+          [ngClass]="{ rotate: isDropdown2Visible }"
+        />
+      </div>
+      <ul id="list" [ngClass]="{ hide: !isDropdown2Visible }">
+        <li
+          class="options"
+          *ngFor="let module of modules"
+          (click)="selectOption2(module.name)"
+        >
+          <p>{{ module.name }}</p>
+        </li>
+        <li class="options" (click)="showCustomInput()">
+          <p>Other</p>
+        </li>
+      </ul>
+    </div>
+    <div class="bug-upload">
+      <div class="imgArea" #imgArea (click)="onTriggerInputClick($event)">
+        <input
+          type="file"
+          name="screenshoot"
+          id="screenshot"
+          hidden
+          accept="image/*"
+          (change)="onFileChange($event)"
+          #screenshot
+        />
+        <fa-icon [icon]="faCloudArrowUp" *ngIf="!imageUploaded"></fa-icon>
+        <h4 *ngIf="!imageUploaded">Upload screenshot of the bug</h4>
+        <p *ngIf="!imageUploaded">
+          image size must be less than <span>2MB</span>
+        </p>
+        <img
+          *ngIf="imageUploaded"
+          [src]="uploadedImageSrc"
+          alt="Uploaded image"
+          (click)="onImageClick($event)"
+        />
+        <div *ngIf="imageUploaded" class="remove-container">
+          <fa-icon [icon]="faXmark" class="close" (click)="removeImage()">
+          </fa-icon>
+          <p class="remove-image">Remove Image</p>
+        </div>
+      </div>
+      <button class="selectImage" type="button" (click)="onTriggerInputClick()">
+        {{ buttonText }}
+      </button>
+
+      <div class="modal" #modal (click)="closeModal()">
+        <img [src]="uploadedImageSrc" alt="Enlarged image" />
+        <fa-icon
+          [icon]="faXmark"
+          class="close"
+          (click)="closeModal()"
+          class="modal-close"
+        ></fa-icon>
+      </div>
+    </div>
+    <div class="radiobox-body">
+      <div class="radio-container">
+        <div class="low">
+          <input
+            type="radio"
+            name="radio"
+            id="radiobox1"
+            value="Low"
+            [(ngModel)]="ticketData.priority"
+          />
+          <label for="radiobox1" id="label1"></label>
+          <label for="radiobox1" id="label"><p>Low</p></label>
+        </div>
+        <div class="medium">
+          <input
+            type="radio"
+            name="radio"
+            id="radiobox2"
+            value="Medium"
+            [(ngModel)]="ticketData.priority"
+          />
+          <label for="radiobox2" id="label2"></label>
+          <label for="radiobox2" id="label"><p>Medium</p></label>
+        </div>
+      </div>
+      <div class="radio-container">
+        <div class="high">
+          <input
+            type="radio"
+            name="radio"
+            id="radiobox3"
+            value="High"
+            [(ngModel)]="ticketData.priority"
+          />
+          <label for="radiobox3" id="label3"></label>
+          <label for="radiobox3" id="label"><p>High</p></label>
+        </div>
+        <div class="critical">
+          <input
+            type="radio"
+            name="radio"
+            id="radiobox4"
+            value="Critical"
+            [(ngModel)]="ticketData.priority"
+          />
+          <label for="radiobox4" id="label4"></label>
+          <label for="radiobox4" id="label"><p>Critical</p></label>
+        </div>
+      </div>
+    </div>
+
+    <button class="submit" type="submit">
+      <span class="transition"></span>
+      <span class="gradient"></span>
+      <span class="label">Assign Ticket</span>
+    </button>
+  </form>
+</div>

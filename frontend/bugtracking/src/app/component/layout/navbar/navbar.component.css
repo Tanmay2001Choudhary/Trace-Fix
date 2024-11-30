@@ -1,0 +1,196 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+nav {
+  background: #0088a9;
+  padding: 10px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.heading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 2px solid white;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 30px;
+  cursor: pointer;
+}
+
+.heading .slogan {
+  display: flex;
+  align-items: center;
+}
+
+.heading .slogan .line1 {
+  width: 30px;
+  height: 3px;
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+  margin-bottom: 8px;
+  margin-left: 8px;
+  background-color: white;
+}
+.heading .slogan .line2 {
+  width: 30px;
+  margin-right: 8px;
+  height: 3px;
+  background-color: white;
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
+  margin-bottom: 8px;
+}
+
+.heading h1 {
+  font-size: 2rem;
+  color: #edf0f1;
+}
+
+.heading .slogan h4 {
+  border: 1px solid #edf0f1;
+  border-left: 8px solid #edf0f1;
+  border-right: 8px solid #edf0f1;
+  border-radius: 15px;
+  color: #e5e9f0;
+  padding: 4px 10px;
+  font-size: large;
+}
+
+.nav-list {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  margin-bottom: 0;
+}
+
+.nav-list li {
+  padding: 0 10px;
+}
+
+li,
+a {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 20px;
+  color: #edf0f1;
+  text-decoration: none;
+}
+
+.nav-list li a {
+  padding: 10px 20px;
+  transition: all 0.3s ease-in-out 0s;
+  border-radius: 5px;
+  position: relative;
+}
+
+.nav-list li a::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 2px;
+  left: 50%;
+  background: #fff;
+  transform: translateX(-50%);
+  transition: width 0.3s ease;
+}
+.nav-list li a:hover::after {
+  width: 100%;
+}
+
+.nav-list .signin {
+  background-color: #5faa5a;
+  border: 2px solid #4a9b49;
+  padding: 10px 1rem;
+  border-radius: 8px;
+  color: white;
+}
+
+.nav-list .signin:hover {
+  background-color: #4a9b49;
+}
+
+.nav-list .logout {
+  background-color: #ff4545;
+  border: 2px solid #f44336;
+  padding: 10px 1rem;
+  border-radius: 8px;
+  color: white;
+}
+
+.nav-list .logout:hover {
+  background: #f44336;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 21;
+}
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+  width: 350px;
+  height: 200px;
+  text-align: center;
+  z-index: 35;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Modal Header */
+.modal h3 {
+  margin-bottom: 20px;
+  font-size: 1.25rem;
+  color: #333;
+}
+
+/* Modal Buttons */
+.modal-actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.modal-actions button {
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.modal-actions button:first-child {
+  background-color: #ccc;
+  color: #333;
+}
+
+.modal-actions button:first-child:hover {
+  background-color: #bbb;
+}
+
+.modal-actions button:last-child {
+  background-color: #ff4d4d;
+  color: white;
+}
+
+.modal-actions button:last-child:hover {
+  background-color: #ff3333;
+}

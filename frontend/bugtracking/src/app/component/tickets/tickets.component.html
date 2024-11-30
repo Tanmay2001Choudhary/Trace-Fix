@@ -1,0 +1,105 @@
+<div class="tickets-container">
+  <div class="page-header">
+    <div>
+      <h1>Tickets Dashboard</h1>
+      <small>Monitor key metrics. Check reporting and review insights</small>
+    </div>
+    <div class="header-actions">
+      <button routerLink="/dashboard/tickets/assign-ticket">
+        <span><i class="ri-upload-2-line"></i></span>
+        Assign Ticket
+      </button>
+    </div>
+  </div>
+  <div class="job-grid">
+    <div class="jobs">
+      <h2>Tickets</h2>
+      <div class="table-responsive">
+        <table width="100%">
+          <thead>
+            <tr>
+              <th>
+                <div class="first">Id</div>
+              </th>
+              <th><div>Title</div></th>
+              <th colspan="3"><div>Description</div></th>
+              <th><div>Created By</div></th>
+              <th><div>Created At</div></th>
+              <th>
+                <div>Status</div>
+              </th>
+              <th>
+                <div class="last">Actions</div>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let ticket of tickets">
+              <td (click)="viewTicket(ticket)">
+                <div>{{ ticket.id }}</div>
+              </td>
+              <td (click)="viewTicket(ticket)">
+                <div>{{ ticket.title }}</div>
+              </td>
+              <td colspan="3" class="description" (click)="viewTicket(ticket)">
+                <div>
+                  {{
+                    ticket.description.split(" ").length > 3
+                      ? ticket.description.split(" ").slice(0, 3).join(" ") +
+                        "..."
+                      : ticket.description
+                  }}
+                </div>
+              </td>
+              <td (click)="viewTicket(ticket)">
+                <div>{{ getUserName(ticket.createdBy) }}</div>
+              </td>
+              <td (click)="viewTicket(ticket)">
+                <div>{{ ticket.createdAt | date : "MMM d, y" }}</div>
+              </td>
+              <td (click)="viewTicket(ticket)">
+                <div>
+                  <span
+                    class="indicator"
+                    [ngClass]="getStatusClass(ticket.status)"
+                    >{{ ticket.status }}</span
+                  >
+                </div>
+              </td>
+              <td>
+                <div>
+                  <button
+                    type="button"
+                    [routerLink]="['/dashboard/tickets/edit-ticket']"
+                    [queryParams]="{
+                      ticketId: ticket.id,
+                      from: 'tickets'
+                    }"
+                  >
+                    <img src="edit.svg" alt="edit" />
+                  </button>
+                  <button type="button" (click)="delete(ticket.id)">
+                    <img src="bin.svg" alt="delete" />
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <app-ticket-modal
+    *ngIf="selectedTicket"
+    [ticket]="selectedTicket"
+    (closeModal)="closeTicket()"
+  >
+  </app-ticket-modal>
+</div>
+
+<app-logout
+  *ngIf="showModal"
+  [title]="'Are you sure you want to delete ticket?'"
+  (cancel)="closeModal()"
+  (confirm)="deleteTicket(selectedTicketId)"
+></app-logout>

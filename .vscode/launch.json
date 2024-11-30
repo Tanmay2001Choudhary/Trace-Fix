@@ -1,0 +1,14 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Spring Boot-BugtrackingApplication<bugtracking>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.newgen.bugtracking.BugtrackingApplication",
+      "projectName": "bugtracking",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    }
+  ]
+}

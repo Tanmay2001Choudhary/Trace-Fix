@@ -1,0 +1,9 @@
+<div class="modal-overlay" (click)="closeModalOnOverlay($event)">
+  <div class="modal">
+    <h3>{{title}}</h3>
+    <div class="modal-actions">
+      <button (click)="cancel.emit()">Cancel</button>
+      <button (click)="handleConfirm()">{{confirmText}}</button>
+    </div>
+  </div>
+</div>

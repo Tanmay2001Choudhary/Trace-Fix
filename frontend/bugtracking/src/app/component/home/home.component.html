@@ -1,0 +1,49 @@
+<div class="home-container">
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Welcome to TraceFix</h1>
+      <p>Effortlessly track and manage your project bugs with ease.</p>
+      <div class="button">
+        <a routerLink="/signin" class="primary-btn">Get Started</a>
+        <a href="#features" class="secondary-btn">View Features</a>
+      </div>
+      <div class="hero-statistics">
+        <div class="statistic">
+          <h3>{{ activeUsers }}+</h3>
+          <p>Active Users</p>
+        </div>
+        <div class="statistic">
+          <h3>{{ bugsFixed }}+</h3>
+          <p>Bugs Fixed</p>
+        </div>
+        <div class="statistic">
+          <h3>{{ projectsManaged }}+</h3>
+          <p>Projects Managed</p>
+        </div>
+      </div>
+    </div>
+    <div class="hero-image">
+      <img src="hero2.svg" alt="Bug Tracking" />
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section id="features" class="features">
+    <h2>Platform Features</h2>
+    <div class="feature-cards">
+      <div class="card">
+        <h3>Bug Reports</h3>
+        <p>Quickly file bug reports and assign them to your team.</p>
+      </div>
+      <div class="card">
+        <h3>Collaborative Workspace</h3>
+        <p>Collaborate with team members and track bug statuses easily.</p>
+      </div>
+      <div class="card">
+        <h3>Dashboard Insights</h3>
+        <p>Get insights into bugs and issues with powerful dashboards.</p>
+      </div>
+    </div>
+  </section>
+</div>

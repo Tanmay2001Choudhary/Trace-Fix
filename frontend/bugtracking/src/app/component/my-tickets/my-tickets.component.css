@@ -1,0 +1,205 @@
+.my-tickets {
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 385px));
+  gap: 15px;
+  margin: auto;
+}
+.ticket-card {
+  height: fit-content;
+  background-color: #fff;
+  padding: 0.5rem;
+  -webkit-box-shadow: 0px 0px 4px 4px rgba(0, 0, 0, 0.09),
+    0px 0px 4px 4px rgba(0, 0, 0, 0.09);
+  -moz-box-shadow: 0px 0px 4px 4px rgba(0, 0, 0, 0.09),
+    0px 0px 4px 4px rgba(0, 0, 0, 0.09);
+  box-shadow: 0px 0px 4px 4px rgba(0, 0, 0, 0.09),
+    0px 0px 4px 4px rgba(0, 0, 0, 0.09);
+  border-radius: 5px;
+}
+
+.ticket-card-header {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  position: relative;
+}
+
+.ticket-card-header-left {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.ticket-card-header-left .priority {
+  color: red;
+  padding-left: 8px;
+}
+
+.ticket-card-header-left .title {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.ticket-card-header-left .title .status {
+  padding: 0.1rem 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 0.8rem;
+  border-radius: 25px;
+  background: #0084a9;
+}
+
+.ticket-card-header-left .module {
+  font-size: 0.8rem;
+  width: fit-content;
+  text-align: center;
+  background: #c2f3eeb3;
+  border-radius: 25px;
+  padding: 0.3rem 0.8rem;
+  color: #0084a9;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.ticket-card-header-right {
+  display: flex;
+  align-items: end;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.ticket-card-header .dropdown-menu {
+  width: 200px;
+  position: absolute;
+  background-color: #fff;
+  padding: 0.5rem;
+  -webkit-box-shadow: 0px 0px 4px 4px rgba(0, 0, 0, 0.09),
+    0px 0px 4px 4px rgba(0, 0, 0, 0.09);
+  -moz-box-shadow: 0px 0px 4px 4px rgba(0, 0, 0, 0.09),
+    0px 0px 4px 4px rgba(0, 0, 0, 0.09);
+  box-shadow: 0px 0px 4px 4px rgba(0, 0, 0, 0.09),
+    0px 0px 4px 4px rgba(0, 0, 0, 0.09);
+  border-radius: 5px;
+  right: 0;
+  top: 30px;
+}
+
+.ticket-card-header .dropdown-menu ul {
+  list-style: none;
+}
+
+.ticket-card-header .dropdown-menu ul li {
+  padding: 0.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.ticket-card-header .dropdown-menu ul li a {
+  text-decoration: none;
+  color: #333;
+  display: flex;
+  gap: 5px;
+}
+
+.ticket-card-header .dropdown-menu ul li a img {
+  width: 20px;
+}
+
+.ticket-card-header .dropdown-menu ul li:hover {
+  background-color: #0087a9;
+  color: white;
+}
+
+.ticket-card-header .dropdown-menu ul li:hover a {
+  color: white;
+}
+
+.ticket-card-header-right img {
+  width: 30px;
+}
+
+.ticket-card-body {
+  border-top: #00000085 solid 1.5px;
+  border-bottom: #00000085 solid 1.5px;
+  padding: 0.5rem 0;
+  min-height: 120px;
+}
+
+.ticket-card-body img {
+  display: inline;
+  width: 150px;
+  height: 100px;
+  border-radius: 5px;
+  border: 2px dashed #0084a9;
+  margin-right: 10px;
+  float: left;
+}
+
+.ticket-card-body .description {
+  font-size: 0.75rem;
+  color: #00000085;
+  text-align: justify;
+}
+
+.ticket-card-footer {
+  display: flex;
+  padding: 0.5rem 0 0 0;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ticket-card-footer .user {
+  position: relative;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  height: 40px;
+}
+
+.ticket-card-footer .user img,
+.ticket-card-footer .user .defaultImage {
+  width: 35px;
+  height: 35px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 1px solid #00000085;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ticket-card-footer .user i {
+  font-size: 1.5rem;
+}
+
+.ticket-card-footer .user:hover .assigned {
+  display: block;
+}
+
+.ticket-card-footer .user .assigned {
+  position: absolute;
+  padding: 0.2rem 0.5rem;
+  top: 40px;
+  right: -10px;
+  width: fit-content;
+  text-wrap: nowrap;
+  background-color: rgb(63, 104, 227);
+  color: white;
+  display: none;
+  border-radius: 5px;
+}
+
+.ticket-card-footer .createdAt {
+  font-family: cursive;
+}
+
+@media (max-width: 400px) {
+  .my-tickets {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+}
